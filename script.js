@@ -1,7 +1,10 @@
 const weaponList = ['rock', 'paper', 'scissors'];
 
 function getComputerChoice() {
-    let randomIndex = Math.floor(Math.random() * 3);
+    // criate a random index to access the array of weapons
+    // note that we need integers between 0 and (1 - weaponList.length)
+    // floor method clamps the number to the nearest lower integer
+    let randomIndex = Math.floor(Math.random() * weaponList.length);
     return weaponList[randomIndex];
 }
 
@@ -10,6 +13,7 @@ function getPlayerChoice() {
 }
 
 function playRound(playerChoice, computerChoice) {
+    // Check each player possible choice and compare with each possible computer choice
     switch (playerChoice) {
         case 'rock':
             switch (computerChoice) {
