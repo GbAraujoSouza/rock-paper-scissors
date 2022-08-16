@@ -7,18 +7,38 @@ header > *{
     margin: 10px auto;
 }
 
-main {
+.weapon-btn {
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    border: 5px groove #000000;
+    margin: 20px;
+}
+
+p#result {
+    text-align: center;
+    margin-top: 30px;
+}
+
+div#player-btn {
     display: flex;
     justify-content: center;
 }
+
 div#rock {
-    background: green;
+    background-color: green;
+    background-image: url('images/rock.png');
+    background-size: cover;
 }
 
 div#paper {
     background: red;
+    background-image: url('images/paper.png');
+    background-size: cover;
 }
 
 div#scissors {
     background: limegreen;
+    background-image: url('images/scissors.png');
+    background-size: cover;
 }
