@@ -8,11 +8,7 @@ function getComputerChoice() {
     return weaponList[randomIndex];
 }
 
-function getPlayerChoice() {
-    return window.prompt('Rock, Paper or Scissors?').toLowerCase();
-}
-
-function playRound(playerChoice, computerChoice) {
+function playRound(playerChoice ,computerChoice) {
     // Check each player possible choice and compare with each possible computer choice
     switch (playerChoice) {
         case 'rock':
@@ -50,11 +46,22 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
-function game() {
-    let playAgain = true;
-    while (playAgain){
-        window.alert(playRound(getPlayerChoice(), getComputerChoice()));
-        playAgain = window.confirm('Want to play again?');
-    }
-}
+const resultDiv = document.querySelector('#result');
+
+const rockButton = document.querySelector('#rock');
+rockButton.addEventListener('click', () => {
+    resultDiv.textContent = playRound('rock', getComputerChoice());
+});
+
+const scissorsButton = document.querySelector('#scissors');
+scissorsButton.addEventListener('click', () => {
+    resultDiv.textContent = playRound('scissors', getComputerChoice());
+});
+
+const paperButton = document.querySelector('#paper');
+paperButton.addEventListener('click', () => {
+    resultDiv.textContent = playRound('paper', getComputerChoice());
+});
+
+
 
