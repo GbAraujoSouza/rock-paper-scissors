@@ -1,4 +1,8 @@
 const weaponList = ['rock', 'paper', 'scissors'];
+const rockButton = document.querySelector('#rock');
+const scissorsButton = document.querySelector('#scissors');
+const paperButton = document.querySelector('#paper');
+const resultDiv = document.querySelector('#result');
 
 function getComputerChoice() {
     // criate a random index to access the array of weapons
@@ -46,19 +50,16 @@ function playRound(playerChoice ,computerChoice) {
     }
 }
 
-const resultDiv = document.querySelector('#result');
 
-const rockButton = document.querySelector('#rock');
 rockButton.addEventListener('click', () => {
     resultDiv.textContent = playRound('rock', getComputerChoice());
 });
 
-const scissorsButton = document.querySelector('#scissors');
+
 scissorsButton.addEventListener('click', () => {
     resultDiv.textContent = playRound('scissors', getComputerChoice());
 });
 
-const paperButton = document.querySelector('#paper');
 paperButton.addEventListener('click', () => {
     resultDiv.textContent = playRound('paper', getComputerChoice());
 });
