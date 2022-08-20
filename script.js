@@ -27,77 +27,27 @@ function getComputerChoice() {
 
 function playRound(playerChoice ,computerChoice) {
     // Check each player possible choice and compare with each possible computer choice
+    let beats = {'paper' : 'rock', 'rock' : 'scissors', 'scissors' : 'paper'}
     let result = {'winnerName': '', 'winnerWeapon': '', 'loserName': '', 'loserWeapon': ''};
-    switch (playerChoice) {
-        case 'rock':
-            switch (computerChoice) {
-                case 'rock':
-                    result['winnerName'] = 'tie';
-                    result['winnerWeapon'] = 'rock';
-                    result['loserName'] = 'tie';
-                    result['loserWeapon'] = 'rock';
-                break;
 
-                case 'paper':
-                    result['winnerName'] = 'computer';
-                    result['winnerWeapon'] = 'paper';
-                    result['loserName'] = 'player';
-                    result['loserWeapon'] = 'rock';
-                break;
-
-                case 'scissors':
-                    result['winnerName'] = 'player';
-                    result['winnerWeapon'] = 'rock';
-                    result['loserName'] = 'computer';
-                    result['loserWeapon'] = 'scissors';
-            }
-            break;
-        case 'paper':
-            switch (computerChoice) {
-                case 'rock':
-                    result['winnerName'] = 'player';
-                    result['winnerWeapon'] = 'paper';
-                    result['loserName'] = 'computer';
-                    result['loserWeapon'] = 'rock';
-                break;
-                    
-                case 'paper':
-                    result['winnerName'] = 'tie';
-                    result['winnerWeapon'] = 'paper';
-                    result['loserName'] = 'tie';
-                    result['loserWeapon'] = 'paper';
-                break;
-
-                case 'scissors':
-                    result['winnerName'] = 'computer';
-                    result['winnerWeapon'] = 'scissors';
-                    result['loserName'] = 'player';
-                    result['loserWeapon'] = 'paper';
-            }
-            break;
-        case 'scissors':
-            switch (computerChoice) {
-                case 'rock':
-                    result['winnerName'] = 'computer';
-                    result['winnerWeapon'] = 'rock';
-                    result['loserName'] = 'player';
-                    result['loserWeapon'] = 'scissors';
-                break;
-
-                case 'paper':
-                    result['winnerName'] = 'player';
-                    result['winnerWeapon'] = 'scissors';
-                    result['loserName'] = 'computer';
-                    result['loserWeapon'] = 'paper';
-                break;
-
-                case 'scissors':
-                    result['winnerName'] = 'tie';
-                    result['winnerWeapon'] = 'scissors';
-                    result['loserName'] = 'tie';
-                    result['loserWeapon'] = 'scissors';
-            }
-            break;
+    if (beats[playerChoice] === computerChoice) {
+        //PLAYER WON!!
+        result['winnerName'] = 'player';
+        result['winnerWeapon'] = playerChoice;
+        result['loserName'] = 'computer';
+        result['loserWeapon'] = computerChoice;
+    } else if (beats[computerChoice] === playerChoice) {
+        // COMPUTER WON!!
+        result['winnerName'] = 'computer';
+        result['winnerWeapon'] = computerChoice;
+        result['loserName'] = 'player';
+        result['loserWeapon'] = playerChoice;
+    } else {
+        // DRAW!!
+        result['winnerName'] = 'tie';
+        result['winnerWeapon'] = playerChoice;
+        result['loserName'] = 'tie';
+        result['loserWeapon'] = computerChoice;
     }
 
     return result;
