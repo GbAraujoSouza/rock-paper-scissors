@@ -4,6 +4,7 @@ const scissorsButton = document.querySelector('#scissors');
 const paperButton = document.querySelector('#paper');
 const resultDiv = document.querySelector('#result');
 const playerScoreDiv = document.querySelector('#player-score');
+const computerScoreDiv = document.querySelector('#computer-score');
 const playAgainWindow = document.querySelector('#play-again-window');
 const playAgainBtn = document.querySelector('#play-again-btn');
 
@@ -102,6 +103,7 @@ function updateScore(gameResult=null){
     // Call the function with no parameter should restart game score
     if (gameResult['winnerName'] === 'computer') {
         computerScore += 1;
+        computerScoreDiv.textContent = computerScore;
         // computerScoreDiv.textContent = computerScore;
     } else if (gameResult['winnerName'] === 'player') {
         playerScore += 1;
@@ -132,6 +134,7 @@ function playAgain(){
     playerScore = 0;
     computerScore = 0;
     playerScoreDiv.textContent = playerScore;
+    computerScoreDiv.textContent = computerScore;
 }
 
 function handleWeaponClick () {
