@@ -1,13 +1,17 @@
-const weaponList = ['rock', 'paper', 'scissors'];
 const rockButton = document.querySelector('#rock');
 const scissorsButton = document.querySelector('#scissors');
 const paperButton = document.querySelector('#paper');
+const computerRock = document.querySelector('#computer-rock');
+const computerPaper = document.querySelector('#computer-paper');
+const computerScissors = document.querySelector('#computer-scissors');
+
 const resultDiv = document.querySelector('#result');
 const playerScoreDiv = document.querySelector('#player-score');
 const computerScoreDiv = document.querySelector('#computer-score');
 const playAgainWindow = document.querySelector('#play-again-window');
 const playAgainBtn = document.querySelector('#play-again-btn');
 
+const weaponList = ['rock', 'paper', 'scissors'];
 const ROUNDS = 5;
 let playerScore = 0;
 let computerScore = 0;
@@ -141,6 +145,44 @@ function handleWeaponClick () {
     // Each weapon has an id of its corresponding name
     // so the function uses that string to play the game
     let result = playRound(this.id, getComputerChoice());
+    let computerWeapon;
+    if (result['winnerName'] === 'computer') {
+        computerWeapon = result['winnerWeapon'];
+    } else {
+        computerWeapon = result['loserWeapon'];
+    }
+
+    switch (computerWeapon) {
+        case 'rock':
+            computerRock.classList.add('unselected-weapon');
+            computerPaper.classList.add('unselected-weapon');
+            computerScissors.classList.add('unselected-weapon');
+            computerRock.classList.remove('selected-weapon');
+            computerPaper.classList.remove('selected-weapon');
+            computerScissors.classList.remove('selected-weapon');
+            computerRock.classList.add('selected-weapon');
+        break;
+
+        case 'paper':
+            computerRock.classList.add('unselected-weapon');
+            computerPaper.classList.add('unselected-weapon');
+            computerScissors.classList.add('unselected-weapon');
+            computerRock.classList.remove('selected-weapon');
+            computerPaper.classList.remove('selected-weapon');
+            computerScissors.classList.remove('selected-weapon');
+            computerPaper.classList.add('selected-weapon');
+        break;
+
+        default:
+            computerRock.classList.add('unselected-weapon');
+            computerPaper.classList.add('unselected-weapon');
+            computerScissors.classList.add('unselected-weapon');
+            computerRock.classList.remove('selected-weapon');
+            computerPaper.classList.remove('selected-weapon');
+            computerScissors.classList.remove('selected-weapon');
+            computerScissors.classList.add('selected-weapon');
+    }
+
     displayGameResult(result);
     updateScore(result);
     checkGameOver() ? GameOver() : null;
