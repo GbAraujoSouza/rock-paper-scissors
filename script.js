@@ -139,12 +139,36 @@ function playAgain(){
     computerScore = 0;
     playerScoreDiv.textContent = playerScore;
     computerScoreDiv.textContent = computerScore;
+    clearWeaponSelection();
+}
+
+function clearWeaponSelection() {
+    computerRock.classList.remove('selected-weapon');
+    computerPaper.classList.remove('selected-weapon');
+    computerScissors.classList.remove('selected-weapon');
+}
+
+function highlightComputerWeapon(weapon) {
+    switch (weapon) {
+        case 'rock':
+            computerRock.classList.add('selected-weapon');
+        break;
+
+        case 'paper':
+            computerPaper.classList.add('selected-weapon');
+        break;
+
+        default:
+            computerScissors.classList.add('selected-weapon');
+    }
 }
 
 function handleWeaponClick () {
     // Each weapon has an id of its corresponding name
     // so the function uses that string to play the game
     let result = playRound(this.id, getComputerChoice());
+
+    // Get the computer weapon rather its winner or loser
     let computerWeapon;
     if (result['winnerName'] === 'computer') {
         computerWeapon = result['winnerWeapon'];
@@ -152,44 +176,19 @@ function handleWeaponClick () {
         computerWeapon = result['loserWeapon'];
     }
 
-    switch (computerWeapon) {
-        case 'rock':
-            computerRock.classList.add('unselected-weapon');
-            computerPaper.classList.add('unselected-weapon');
-            computerScissors.classList.add('unselected-weapon');
-            computerRock.classList.remove('selected-weapon');
-            computerPaper.classList.remove('selected-weapon');
-            computerScissors.classList.remove('selected-weapon');
-            computerRock.classList.add('selected-weapon');
-        break;
+    // Highlight computer's used weapon
+    clearWeaponSelection();
+    highlightComputerWeapon(computerWeapon);
 
-        case 'paper':
-            computerRock.classList.add('unselected-weapon');
-            computerPaper.classList.add('unselected-weapon');
-            computerScissors.classList.add('unselected-weapon');
-            computerRock.classList.remove('selected-weapon');
-            computerPaper.classList.remove('selected-weapon');
-            computerScissors.classList.remove('selected-weapon');
-            computerPaper.classList.add('selected-weapon');
-        break;
-
-        default:
-            computerRock.classList.add('unselected-weapon');
-            computerPaper.classList.add('unselected-weapon');
-            computerScissors.classList.add('unselected-weapon');
-            computerRock.classList.remove('selected-weapon');
-            computerPaper.classList.remove('selected-weapon');
-            computerScissors.classList.remove('selected-weapon');
-            computerScissors.classList.add('selected-weapon');
-    }
-
+    // display the results on the screen
     displayGameResult(result);
     updateScore(result);
+
+    // Check for game over status
     checkGameOver() ? GameOver() : null;
 }
 
 rockButton.addEventListener('click',handleWeaponClick);
 paperButton.addEventListener('click',handleWeaponClick);
 scissorsButton.addEventListener('click',handleWeaponClick);
-
 playAgainBtn.addEventListener('click', playAgain);

@@ -22,8 +22,7 @@ dialog {
     margin: auto;
 }
 
-.weapon-btn {
-    cursor: pointer;
+.square {
     width: 300px;
     height: 300px;
     border-radius: 20px;
@@ -32,11 +31,15 @@ dialog {
     position: relative;
     transition: transform 0.3s;
 }
+
+.weapon-btn {
+    cursor: pointer;
+}
 .weapon-btn:hover {
     transform: scale(1.05);
 }
 
-.weapon-btn::before {
+.square::before {
     position: absolute;
     content: '';
     background: gray;
@@ -49,7 +52,10 @@ dialog {
     transform: scale(1.01);
     transition: opacity 0.3s ease-in-out;
 }
-.weapon-btn:hover::before {
+/* player selection highlight when hovered
+   computer weapon highlight the selected weapon */
+.weapon-btn:hover::before,
+.selected-weapon::before {
     opacity: 0;
 }
 
@@ -63,24 +69,27 @@ div#player-btn {
     justify-content: center;
     align-items: center;
 }
-div#player-btn p {
+p.score {
     font-size: 20em;
     margin-left: 0.4em;
 }
 
-div#rock {
+div#rock,
+div#computer-rock {
     background-color: green;
     background-image: url('images/rock.png');
     background-size: cover;
 }
 
-div#paper {
+div#paper,
+div#computer-paper {
     background: red;
     background-image: url('images/paper.png');
     background-size: cover;
 }
 
-div#scissors {
+div#scissors,
+div#computer-scissors {
     background: limegreen;
     background-image: url('images/scissors.png');
     background-size: cover;
