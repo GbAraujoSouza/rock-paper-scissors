@@ -50,6 +50,13 @@ function playRound(playerChoice ,computerChoice) {
     }
 }
 
+function updateScore(winner){
+    if (winner === "computer") {
+        computerChoice += 1;
+    } else {
+        playerChoice += 1;
+    }
+}
 
 rockButton.addEventListener('click', () => {
     resultDiv.textContent = playRound('rock', getComputerChoice());
