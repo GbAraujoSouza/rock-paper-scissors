@@ -5,6 +5,9 @@ const paperButton = document.querySelector('#paper');
 const resultDiv = document.querySelector('#result');
 const playerScoreDiv = document.querySelector('#player-score');
 const playAgainWindow = document.querySelector('#play-again-window');
+const playAgainBtn = document.querySelector('#play-again-btn');
+
+const ROUNDS = 5;
 let playerScore = 0;
 let computerScore = 0;
 
@@ -95,7 +98,8 @@ function playRound(playerChoice ,computerChoice) {
     return result;
 }
 
-function updateScore(gameResult){
+function updateScore(gameResult=null){
+    // Call the function with no parameter should restart game score
     if (gameResult['winnerName'] === 'computer') {
         computerScore += 1;
         // computerScoreDiv.textContent = computerScore;
@@ -116,11 +120,18 @@ function displayGameResult(gameResult) {
 }
 
 function checkGameOver() {
-    return playerScore >= 5 || computerScore >= 5;
+    return playerScore >= ROUNDS || computerScore >= ROUNDS;
 }
 
 function GameOver () {
     playAgainWindow.showModal();
+}
+
+function playAgain(){
+    playAgainWindow.close();
+    playerScore = 0;
+    computerScore = 0;
+    playerScoreDiv.textContent = playerScore;
 }
 
 function handleWeaponClick () {
@@ -135,3 +146,5 @@ function handleWeaponClick () {
 rockButton.addEventListener('click',handleWeaponClick);
 paperButton.addEventListener('click',handleWeaponClick);
 scissorsButton.addEventListener('click',handleWeaponClick);
+
+playAgainBtn.addEventListener('click', playAgain);
