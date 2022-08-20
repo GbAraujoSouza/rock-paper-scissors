@@ -4,6 +4,7 @@ const scissorsButton = document.querySelector('#scissors');
 const paperButton = document.querySelector('#paper');
 const resultDiv = document.querySelector('#result');
 const playerScoreDiv = document.querySelector('#player-score');
+const playAgainWindow = document.querySelector('#play-again-window');
 let playerScore = 0;
 let computerScore = 0;
 
@@ -114,12 +115,21 @@ function displayGameResult(gameResult) {
     }
 }
 
+function checkGameOver() {
+    return playerScore >= 5 || computerScore >= 5;
+}
+
+function GameOver () {
+    playAgainWindow.showModal();
+}
+
 function handleWeaponClick () {
     // Each weapon has an id of its corresponding name
     // so the function uses that string to play the game
     let result = playRound(this.id, getComputerChoice());
     displayGameResult(result);
     updateScore(result);
+    checkGameOver() ? GameOver() : null;
 }
 
 rockButton.addEventListener('click',handleWeaponClick);
