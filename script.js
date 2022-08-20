@@ -101,17 +101,30 @@ function updateScore(winner){
     }
 }
 
+function displayGameResult(gameResult) {
+    if (gameResult['winnerName'] === 'tie') {
+        resultDiv.textContent = 'Tie!';
+    } else if (gameResult['winnerName'] === 'computer') {
+        resultDiv.textContent = `You Lose! ${gameResult['winnerWeapon']} beats ${gameResult['loserWeapon']}`;
+    } else {
+        resultDiv.textContent = `You Won! ${gameResult['winnerWeapon']} beats ${gameResult['loserWeapon']}`;
+    }
+}
+
 rockButton.addEventListener('click', () => {
-    resultDiv.textContent = playRound('rock', getComputerChoice());
+    let result = playRound('rock', getComputerChoice());
+    displayGameResult(result);
 });
 
 
 scissorsButton.addEventListener('click', () => {
-    resultDiv.textContent = playRound('scissors', getComputerChoice());
+    let result = playRound('scissors', getComputerChoice());
+    displayGameResult(result);
 });
 
 paperButton.addEventListener('click', () => {
-    resultDiv.textContent = playRound('paper', getComputerChoice());
+    let result = playRound('paper', getComputerChoice());
+    displayGameResult(result);
 });
 
 
