@@ -114,24 +114,14 @@ function displayGameResult(gameResult) {
     }
 }
 
-rockButton.addEventListener('click', () => {
-    let result = playRound('rock', getComputerChoice());
+function handleWeaponClick () {
+    // Each weapon has an id of its corresponding name
+    // so the function uses that string to play the game
+    let result = playRound(this.id, getComputerChoice());
     displayGameResult(result);
     updateScore(result);
-});
+}
 
-
-scissorsButton.addEventListener('click', () => {
-    let result = playRound('scissors', getComputerChoice());
-    displayGameResult(result);
-    updateScore(result);
-});
-
-paperButton.addEventListener('click', () => {
-    let result = playRound('paper', getComputerChoice());
-    displayGameResult(result);
-    updateScore(result);
-});
-
-
-
+rockButton.addEventListener('click',handleWeaponClick);
+paperButton.addEventListener('click',handleWeaponClick);
+scissorsButton.addEventListener('click',handleWeaponClick);
