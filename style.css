@@ -11,8 +11,15 @@ body {
     min-height: 100vh;
 }
 
-header > *{
-    margin: 10px auto;
+header {
+    background: #757373;
+    color:#fff;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+p#result {
+    font-size: 2.5em;
 }
 
 dialog {
@@ -23,18 +30,17 @@ dialog {
     border-radius: 1.25em;
     box-shadow: 0 0 1em rgb(0 0 0 / .3);
     margin: auto;
+    background: rgba(0, 0, 0, .7);
 }
 dialog > p {
+    color: #03e9f4;
     font-size: 4em;
     margin-bottom: 1em;
 }
-dialog > button {
-    /* font-size: 1em;
-    width: 15em;
-    height: 4em;
-    padding: 0.625em 1.25em;
-    border-radius: 1.25em;
-    transition: box-shadow 0.2s linear, transform 0.2s linear; */
+dialog > button{
+    position: relative;
+    background-color: transparent;
+    border: 0px solid transparent;
     display: inline-block;
     padding: 10px 20px;
     color: #03e9f4;
@@ -42,14 +48,88 @@ dialog > button {
     overflow: hidden;
     transition: .5s;
     letter-spacing: 2px;
+    outline: 0;
 }
-dialog > button:hover {
+dialog > button:hover,
+dialog > button:focus{
+    border: 0 double transparent;
     background: #03e9f4;
     color: #fff;
-  }
-  
-dialog > button:active {
-    transform: translateY(2px);
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+}
+dialog > button span {
+    position: absolute;
+    display: block;
+}
+dialog > button span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: btn-anim1 1s linear infinite;
+}
+@keyframes btn-anim1 {
+    0% {
+        left: -100%;
+    }
+    50%, 100% {
+        left: 100%;
+    }
+}
+dialog > button span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    height: 100%;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s;
+}
+@keyframes btn-anim2 {
+    0% {
+        top: -100%;
+    }
+    50%, 100% {
+        top: 100%;
+    }
+}
+dialog > button span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .57s;
+}
+@keyframes btn-anim3 {
+    0% {
+        right: -100%;
+    }
+    50%, 100% {
+        right: 100%;
+    }
+}
+dialog > button span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s;
+}
+@keyframes btn-anim4 {
+    0% {
+        bottom: -100%;
+    }
+    50%, 100% {
+        bottom: 100%;
+    }
 }
 
 .square {
